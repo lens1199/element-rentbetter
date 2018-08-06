@@ -57,6 +57,10 @@ export default {
       type: Function,
       default: noop
     },
+    onMove: {
+      type: Function,
+      default: noop
+    },
     onChange: {
       type: Function,
       default: noop
@@ -187,6 +191,7 @@ export default {
           let newPos = i + dire;
           if (newPos > -1 && newPos < tempFL.length) {
             this.uploadFiles = this.swapItem(tempFL, i, newPos);
+            this.onMove(file, this.uploadFiles);
           }
           return;
         }
