@@ -126,6 +126,21 @@ export default {
   },
 
   methods: {
+    // customised function
+    afterRotate(oldImg, newImg) {
+      let that = this;
+      let file;
+      for (let i = 0; i < that.uploadFiles.length; i++) {
+        file = that.uploadFiles[i];
+        if (file.uid === oldImg.uid) {
+          let imgToupdate = newImg;
+          imgToupdate.uid = Date.now() + this.tempIndex++;
+          imgToupdate.status = 'success';
+          that.uploadFiles[i] = imgToupdate;
+          break;
+        }
+      }
+    },
     handleStart(rawFile) {
       rawFile.uid = Date.now() + this.tempIndex++;
       let file = {
